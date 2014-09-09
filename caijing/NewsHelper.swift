@@ -10,12 +10,16 @@ import Foundation
 import Alamofire
 
 class NewsHelper {
-    let URL = "http://caijing.tuofeng.cn/app/news/by_portals/?page=2&type=json"
-    func getList(callback:(([[String:AnyObject]])->Void)) -> Void {
-        Alamofire.request(.GET, URL)
+    let URL = "http://caijing.tuofeng.cn/app/news/by_portals/"
+    func getList(callback:(([[String:AnyObject]])->Void), page:Int = 2) -> Void {
+        Alamofire.request(.GET, URL, parameters: ["page": page, "type": "json"])
             .responseJSON {(request, response, JSON, error) in
-                let data = JSON as [[String:AnyObject]]
-                callback(data)
+                if let data: AnyObject = JSON? {
+                    callback(data as [[String:AnyObject]])
+                } else {
+                    println(response)
+                    callback([])
+                }
         }
     }
 }
