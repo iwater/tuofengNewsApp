@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.navigationBar
+        self.navigationController?.hidesBarsOnTap = true
         self.navigationController?.navigationBar.tintColor = ColorHelper.UIColorFromRGB(0xffffff)
         self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
         println(news)
@@ -34,7 +35,7 @@ class DetailViewController: UIViewController {
         sourceLabel.text = news!["source"]! as? String
         //contentView.text = news!["long_summary"]! as String
         
-        let s2:String = news!["long_summary"]! as String
+        if let s2 = news!["long_summary"]! as? String {
         
         var content : NSMutableAttributedString!
         content = NSMutableAttributedString(string:s2, attributes: [
@@ -63,6 +64,10 @@ class DetailViewController: UIViewController {
             }, range:NSMakeRange(0, s1.length))
         
         contentView.attributedText = content
+        }
+        
+        let x = JSONValue("[]")
+        println(x)
     }
     
     required init(coder aDecoder: NSCoder) {
