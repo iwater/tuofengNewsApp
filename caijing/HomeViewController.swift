@@ -18,7 +18,8 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "驼峰财经·首页"
-        self.navigationController?.navigationBar.tintColor = ColorHelper.UIColorFromRGB(0xffffff)
+        //self.navigationController?.hidesBarsOnTap = false
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
         self.tableView.layer.backgroundColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
         
@@ -50,6 +51,8 @@ class HomeViewController: UITableViewController {
         
         let rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
         
+        println(indexPath.row)
+        
         cell.title.text = rowData["title"] as? String
         cell.summary.text = rowData["summary"] as? String
         cell.source.text = rowData["source"] as? String
@@ -60,6 +63,10 @@ class HomeViewController: UITableViewController {
         //cell.contentView.layer.cornerRadius = 10
         //cell.contentView.layer.masksToBounds = true
         cell.contentView.backgroundColor = UIColor.clearColor()
+        cell.contentView.layer.backgroundColor = UIColor.clearColor().CGColor
+        cell.contentView.layer.borderWidth = 16
+        cell.contentView.layer.borderColor = UIColor.clearColor().CGColor
+        
         
         let background = UIView()
         //cell.backgroundView = background
@@ -67,11 +74,11 @@ class HomeViewController: UITableViewController {
         lay.borderColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
         lay.borderWidth = 4
         lay.backgroundColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
-        let v2 = UIView(frame: CGRect(x: 8.0, y: 4.0, width: 304.0, height: 92.0))
+        let v2 = UIView(frame: CGRect(x: 8.0, y: 4.0, width: 304.0, height: 112.0))
         v2.layer.backgroundColor = UIColor.whiteColor().CGColor
         v2.layer.borderWidth = 1
         v2.layer.borderColor = ColorHelper.UIColorFromRGB(0xe6e6e3).CGColor
-        v2.layer.cornerRadius = 5
+        v2.layer.cornerRadius = 3
         v2.layer.masksToBounds = true
         background.addSubview(v2)
         
@@ -79,7 +86,8 @@ class HomeViewController: UITableViewController {
         //background.addConstraint(constraint)
         //v2.layer.frame =
         
-        
+        cell.summary.tintColor = ColorHelper.UIColorFromRGB(0xf2f2f0)
+        println(self.tableData.count)
         cell.backgroundView = background
         
         return cell
@@ -89,7 +97,7 @@ class HomeViewController: UITableViewController {
     {
         let rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
         println(tableView.bounds)
-        return 100;
+        return 130;
         //return NewsCell.heightForText(rowData["summary"]! as String, bounds: tableView.bounds)
     }
     
