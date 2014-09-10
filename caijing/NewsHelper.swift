@@ -11,7 +11,8 @@ import Alamofire
 
 class NewsHelper {
     let URL = "http://caijing.tuofeng.cn/app/news/by_portals/"
-    func getList(callback:(([[String:AnyObject]])->Void), page:Int = 2) -> Void {
+    //let URL = "http://caijing.tuofeng.cn/app/"
+    func getList(callback:(([[String:AnyObject]])->Void), page:Int = 1) -> Void {
         Alamofire.request(.GET, URL, parameters: ["page": page, "type": "json"])
             .responseJSON {(request, response, JSON, error) in
                 if let data: AnyObject = JSON? {
@@ -20,6 +21,14 @@ class NewsHelper {
                     println(response)
                     callback([])
                 }
+        }
+    }
+    
+    func getList2(callback:(([JSONValue])->Void), page:Int = 1) {
+        Alamofire.request(.GET, URL, parameters: ["page": page, "type": "json"])
+            .responseJSON {(request, response, data, error) in
+                let json:[JSONValue] = JSONValue(data!).array!
+                callback(json)
         }
     }
 }

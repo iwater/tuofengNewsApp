@@ -11,7 +11,9 @@ import UIKit
 
 class HomeViewController: UITableViewController {
     let newsHelper = NewsHelper()
-    var tableData:[[String:AnyObject]] = []
+    var tableData:[JSONValue] = []
+    var page = 1
+    var loadMoreEnabled = false
     //var refreshControl:UIRefreshControl!
     
     @IBOutlet var newsTableView: UITableView!
@@ -32,7 +34,7 @@ class HomeViewController: UITableViewController {
         self.setupNavigationItems()
         
         //self.tableView.contentOffset = CGPointMake(0, -self.refreshControl?.frame.size.height)
-        self.doRefresh()
+        self.refresh()
     }
         
     override func didReceiveMemoryWarning() {
@@ -42,6 +44,7 @@ class HomeViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         println("hits")
+        println(self.tableData)
         return tableData.count
     }
     
@@ -49,14 +52,18 @@ class HomeViewController: UITableViewController {
         //let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "newsCell")
         let cell = tableView.dequeueReusableCellWithIdentifier("newsCell") as HomeItemCell
         
-        let rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+        let rowData:JSONValue = self.tableData[indexPath.row]
         
         println(indexPath.row)
         
-        cell.title.text = rowData["title"] as? String
-        cell.summary.text = rowData["summary"] as? String
-        cell.source.text = rowData["source"] as? String
-        cell.time.text = rowData["timeTxt"] as? String
+        if (loadMoreEnabled && indexPath.row == self.tableData.count-1) {
+            self.loadMore()
+        }
+        
+        cell.title.text = rowData["title"].string
+        cell.summary.text = rowData["summary"].string
+        cell.source.text = rowData["source"].string
+        cell.time.text = rowData["timeTxt"].string
         //cell.contentView.backgroundColor = UIColor.redColor()
         //cell.contentView.layer.borderWidth = 15
         //cell.contentView.layer.borderColor = UIColor.blueColor().CGColor
@@ -87,7 +94,7 @@ class HomeViewController: UITableViewController {
         //v2.layer.frame =
         
         cell.summary.tintColor = ColorHelper.UIColorFromRGB(0xf2f2f0)
-        println(self.tableData.count)
+        //println(self.tableData.count)
         cell.backgroundView = background
         
         return cell
@@ -95,7 +102,7 @@ class HomeViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        let rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+        let rowData = self.tableData[indexPath.row].object
         println(tableView.bounds)
         return 130;
         //return NewsCell.heightForText(rowData["summary"]! as String, bounds: tableView.bounds)
@@ -105,15 +112,34 @@ class HomeViewController: UITableViewController {
         self.refresh("")
     }
     
-    func refresh(sender:AnyObject)
+    func update(data:[JSONValue]) {
+        self.tableData = data
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+        self.loadMore()
+    }
+    
+    func append(data:[JSONValue]) {
+        //var tempDatasource:NSMutableArray = NSMutableArray(array: self.tableData, copyItems: false)
+        for item in data {
+            self.tableData.append(item)
+        }
+        //self.tableData.append(data)
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+        self.loadMoreEnabled = true
+    }
+    
+    func loadMore() {
+        println("tring load more")
+        self.loadMoreEnabled = false
+        newsHelper.getList2(self.append, page:page++)
+    }
+    
+    func refresh(_:AnyObject = "")
     {
         println("refreshed")
-        newsHelper.getList(){(data:[[String:AnyObject]]) in
-            //println(data)
-            self.tableData = data
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-        }
+        newsHelper.getList2(self.update, page:page++)
     }
     
     func setupNavigationItems() {
@@ -125,7 +151,7 @@ class HomeViewController: UITableViewController {
         if (segue.identifier == "openNews") {
             var destination = segue.destinationViewController as DetailViewController
             if let selectedRows = self.tableView.indexPathsForSelectedRows() {
-                destination.news = self.tableData[selectedRows[0].row] as [String:AnyObject]
+                destination.news = self.tableData[selectedRows[0].row]
             }
         }
     }

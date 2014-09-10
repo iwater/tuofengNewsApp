@@ -16,7 +16,7 @@ func lend<T where T:NSObject> (closure:(T)->()) -> T {
 }
 
 class DetailViewController: UIViewController {
-    var news:[String:AnyObject]?
+    var news:JSONValue?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentView: UITextView!
@@ -30,12 +30,12 @@ class DetailViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = ColorHelper.UIColorFromRGB(0xffffff)
         self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
         println(news)
-        titleLabel.text = news!["title"]! as? String
-        timeLabel.text = news!["publish_time"]! as? String
-        sourceLabel.text = news!["source"]! as? String
+        titleLabel.text = news!["title"].string
+        timeLabel.text = news!["publish_time"].string
+        sourceLabel.text = news!["source"].string
         //contentView.text = news!["long_summary"]! as String
         
-        if let s2 = news!["long_summary"]! as? String {
+        if let s2 = news!["long_summary"].string {
         
         var content : NSMutableAttributedString!
         content = NSMutableAttributedString(string:s2, attributes: [

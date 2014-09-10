@@ -98,7 +98,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if (segue.identifier == "openNews") {
             var destination = segue.destinationViewController as DetailViewController
             if let selectedRows = newsTableView.indexPathsForSelectedRows() {
-                destination.news = self.tableData[selectedRows[0].row] as [String:AnyObject]
+                //destination.news = self.tableData[selectedRows[0].row] as [String:AnyObject]
             }
         }
     }
