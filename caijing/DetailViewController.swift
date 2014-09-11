@@ -16,7 +16,7 @@ func lend<T where T:NSObject> (closure:(T)->()) -> T {
 }
 
 class DetailViewController: UIViewController {
-    var news:JSONValue?
+    var news:JSONValue!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentView: UITextView!
@@ -26,13 +26,13 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.navigationBar
-        self.navigationController?.hidesBarsOnTap = true
+        //self.navigationController?.hidesBarsOnTap = true
         self.navigationController?.navigationBar.tintColor = ColorHelper.UIColorFromRGB(0xffffff)
         self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
         println(news)
-        titleLabel.text = news!["title"].string
-        timeLabel.text = news!["publish_time"].string
-        sourceLabel.text = news!["source"].string
+        titleLabel.text = news["title"].string
+        timeLabel.text = news["publish_time"].string
+        sourceLabel.text = news["source"].string
         //contentView.text = news!["long_summary"]! as String
         
         if let s2 = news!["long_summary"].string {
@@ -66,8 +66,8 @@ class DetailViewController: UIViewController {
         contentView.attributedText = content
         }
         
-        let x = JSONValue("[]")
-        println(x)
+        println(self.contentView.contentOffset)
+        println(self.contentView.contentSize)
     }
     
     required init(coder aDecoder: NSCoder) {

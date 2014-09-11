@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L04-TJ-LFn">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -157,40 +160,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标题" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9I-LB-rkJ">
-                                <rect key="frame" x="5" y="80" width="310" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9I-LB-rkJ">
+                                <rect key="frame" x="16" y="80" width="568" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="wdz-cG-nYm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" indicatorStyle="white" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epb-GS-2ae">
-                                <rect key="frame" x="5" y="163" width="310" height="437"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epb-GS-2ae">
+                                <rect key="frame" x="5" y="163" width="589" height="437"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="50" maxX="0.0" maxY="50"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <string key="content">双胞胎研究一再显示，智力、个性以及其他行为学性状都有一定的遗传学基础。然而，之前人们关联IQ和DNA的努力，只产出了大量不可重复的结果。2012年Behavior Genetics杂志上的一篇社论犀利地指出，“现在看来，近十年来的许多发现都是错误或者有误导性的，我们并没有取得真正意义上的进展。”
+2011年，研究者们为了更严谨地研究基因对行为的影响，成立了SSGAC联盟（Social Sciences Genetic Association Consortium）。该联盟借鉴医学遗传学的研究方法，对参与者数量、统计学的严谨性和可重现性给予了足够的重视。
+2013年，他们比较了超过十二万六千人的基因组，鉴定了与高学历有关的三个基因变异。这些遗传变异的影响并不大，每个变异的影响差不多相当于一个月的教育。近日，该研究团队又在九月八日的美国国家科学院院刊PNAS杂志上发表了后续研究。（延伸阅读：Science：大型研究寻找“高学历”基因）
+为了鉴定与IQ及认知能力有关的遗传变异，研究人员首先在超过106,000人中寻找与受教育水平有关的基因变异。他们从中鉴定了69个与受教育水平关联最强的基因变异。
+随后研究人员在另外两万四千人中，核查了这些基因变异与IQ的关系（参与者接受有关认知能力的测试）。他们发现，有三个基因变异与受教育程度和高IQ分数都相关。
+在上述参与者中，大约三分之二的人分数在85到115之间。平均来看，研究人员鉴定的每个变异对IQ分数的影响是0.3分。也就是说，如果你具有两个拷贝的全部变异，那么你在智力测试中的分数会高1.8分。
+这项研究的领导者之一，康奈尔大学的Daniel Benjamin介绍道，此前人们也发现了一些与复杂性状有关的基因变异（例如身高），而IQ相关变异的影响只是它们的二十分之一。要找到足够有影响力的IQ基因变异，可能还需要研究上百万人。
+Benjamin和同事们一开始就知道自己的努力最终可能是徒劳的。不过这项研究告诉我们，智力这样的性状受到多个基因的影响，这些基因单独起到的作用都很小。这样的信息有助于引导未来的研究，“我们并不是一无所获，”他说。
+</string>
                                         <attributes>
-                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="16" name="MicrosoftYaHei"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" firstLineHeadIndent="32" minimumLineHeight="26" defaultTabInterval="36">
+                                                <tabStops/>
+                                            </paragraphStyle>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2014" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cot-jL-YiH">
-                                <rect key="frame" x="145" y="126" width="159" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cot-jL-YiH">
+                                <rect key="frame" x="425" y="127" width="159" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="159" id="GfW-5y-sIt"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="股票123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbt-8r-uB0">
-                                <rect key="frame" x="5" y="127" width="129" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="股票123" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbt-8r-uB0">
+                                <rect key="frame" x="16" y="127" width="129" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="129" id="tms-MW-G7S"/>
+                                    <constraint firstAttribute="height" constant="21" id="u5v-Sy-byT"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cot-jL-YiH" firstAttribute="trailing" secondItem="Jqy-UB-HfX" secondAttribute="trailingMargin" id="IRv-wn-GiT"/>
+                            <constraint firstItem="kbt-8r-uB0" firstAttribute="leading" secondItem="Jqy-UB-HfX" secondAttribute="leadingMargin" id="UdT-gm-t5r"/>
+                            <constraint firstItem="epb-GS-2ae" firstAttribute="top" secondItem="kbt-8r-uB0" secondAttribute="bottom" constant="15" id="VUd-Na-VS9"/>
+                            <constraint firstItem="M9I-LB-rkJ" firstAttribute="top" secondItem="yT3-OP-eus" secondAttribute="bottom" constant="16" id="XUv-pI-zCf"/>
+                            <constraint firstItem="M9I-LB-rkJ" firstAttribute="leading" secondItem="Jqy-UB-HfX" secondAttribute="leadingMargin" id="ZMu-u0-Oso"/>
+                            <constraint firstItem="cot-jL-YiH" firstAttribute="firstBaseline" secondItem="kbt-8r-uB0" secondAttribute="firstBaseline" id="aF3-RL-RAI"/>
+                            <constraint firstItem="kbt-8r-uB0" firstAttribute="top" secondItem="M9I-LB-rkJ" secondAttribute="bottom" constant="2" id="cB6-Cj-AVx"/>
+                            <constraint firstItem="M9I-LB-rkJ" firstAttribute="leading" secondItem="epb-GS-2ae" secondAttribute="leading" id="h1B-AB-A8i"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="M9I-LB-rkJ" secondAttribute="trailing" id="i6N-Rr-7vK"/>
+                            <constraint firstItem="M9I-LB-rkJ" firstAttribute="trailing" secondItem="epb-GS-2ae" secondAttribute="trailing" id="qvv-fa-2xD"/>
+                            <constraint firstItem="kbt-8r-uB0" firstAttribute="baseline" secondItem="cot-jL-YiH" secondAttribute="baseline" id="r8d-1q-yV5"/>
+                            <constraint firstItem="NcU-9D-iqU" firstAttribute="top" secondItem="epb-GS-2ae" secondAttribute="bottomMargin" id="rJp-cf-z7r"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FPD-Xf-iMv">
                         <barButtonItem key="backBarButtonItem" title="+" id="LWH-vQ-RdC"/>
