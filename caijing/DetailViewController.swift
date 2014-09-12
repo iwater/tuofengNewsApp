@@ -35,11 +35,13 @@ class DetailViewController: UIViewController {
         sourceLabel.text = news["source"].string
         //contentView.text = news!["long_summary"]! as String
         
+        
         if let s2 = news!["long_summary"].string {
+            let fontSize:CGFloat = 17.0
         
         var content : NSMutableAttributedString!
         content = NSMutableAttributedString(string:s2, attributes: [
-            NSFontAttributeName: UIFont(name:"HelveticaNeue-Light", size:16)
+            NSFontAttributeName: UIFont(name:"HelveticaNeue-Light", size: fontSize)
             ])
         /*content.addAttributes([
             //NSFontAttributeName: UIFont(name:"HelveticaNeue-Light", size:24),
@@ -52,9 +54,9 @@ class DetailViewController: UIViewController {
         content.addAttribute(NSParagraphStyleAttributeName,
             value:lend() {
                 (para2 : NSMutableParagraphStyle) in
-                para2.headIndent = 10
-                para2.firstLineHeadIndent = 42
-                para2.tailIndent = -10
+                para2.headIndent = -5
+                para2.firstLineHeadIndent = 2 * fontSize
+                //para2.tailIndent = -10
                 para2.lineBreakMode = .ByWordWrapping
                 para2.alignment = .Justified
                 para2.lineHeightMultiple = 1.1
@@ -63,7 +65,10 @@ class DetailViewController: UIViewController {
                 para2.paragraphSpacingBefore = 0.0
             }, range:NSMakeRange(0, s1.length))
         
-        contentView.attributedText = content
+            contentView.attributedText = content
+            contentView.tintColor = ColorHelper.UIColorFromRGB(0x1f1f1f)
+            contentView.scrollEnabled = false
+            contentView.contentInset.left = 50
         }
         
         println(self.contentView.contentOffset)
@@ -73,4 +78,5 @@ class DetailViewController: UIViewController {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
 }
