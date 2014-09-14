@@ -14,4 +14,5 @@ class HomeItemCell: UITableViewCell {
     @IBOutlet weak var summary: UILabel!
     @IBOutlet weak var source: UILabel!
     @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var comments: UIButton!
 }

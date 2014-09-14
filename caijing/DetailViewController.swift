@@ -15,8 +15,10 @@ func lend<T where T:NSObject> (closure:(T)->()) -> T {
     return orig
 }
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var tableData:[JSONValue] = []
     var news:JSONValue!
+    let newsHelper = NewsHelper()
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentView: UITextView!
@@ -29,7 +31,12 @@ class DetailViewController: UIViewController {
         //self.navigationController?.hidesBarsOnTap = true
         self.navigationController?.navigationBar.tintColor = ColorHelper.UIColorFromRGB(0xffffff)
         self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
-        println(news)
+        //println(navigationController?.navigationBar.backItem)
+        var back = navigationController?.navigationBar.backItem
+        //println(news)
+        
+        newsHelper.getLArticle(self.update, id: news["id"].integer!)
+        
         titleLabel.text = news["title"].string
         timeLabel.text = news["publish_time"].string
         sourceLabel.text = news["source"].string
@@ -70,13 +77,29 @@ class DetailViewController: UIViewController {
             contentView.scrollEnabled = false
             contentView.contentInset.left = 50
         }
-        
-        println(self.contentView.contentOffset)
-        println(self.contentView.contentSize)
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func update(json:JSONValue) {
+        self.news = json
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //println("hits")
+        //println(self.tableData)
+        return tableData.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("sourceCell") as UITableViewCell
+        
+        let rowData:JSONValue = self.tableData[indexPath.row]
+        //cell.content.text = rowData["msg_content"].string
+        
+        return cell
     }
     
 }

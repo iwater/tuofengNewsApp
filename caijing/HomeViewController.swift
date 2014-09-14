@@ -9,14 +9,22 @@
 import Foundation
 import UIKit
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDelegate {
     let newsHelper = NewsHelper()
     var tableData:[JSONValue] = []
     var page = 1
+    var type = "home"
     var loadMoreEnabled = false
+    let defaultCellHeight:CGFloat = 130
+    var sideBar: SideMenu!
+    var sideMenu : SideMenu2?
     //var refreshControl:UIRefreshControl!
     
-    @IBOutlet var newsTableView: UITableView!
+    @IBAction func HandleGesture(sender: AnyObject) {
+        println("fired")
+        sideMenu?.toggleMenu()
+    }
+    //@IBOutlet var newsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "驼峰财经·首页"
@@ -34,6 +42,15 @@ class HomeViewController: UITableViewController {
         self.setupNavigationItems()
         
         //self.tableView.contentOffset = CGPointMake(0, -self.refreshControl?.frame.size.height)
+        
+        sideBar = SideMenu(view: view)
+        sideBar.delegate = self
+        
+        //sideMenu = SideMenu2(sourceView: self.view, menuData: [{"\u{E603} 财经导航"}, "\u{E600} 首页", "\u{E602} 媒体热门", "\u{E601} 热评资讯", "\u{E604} 滚动新闻", "\u{E604} 新股", "\u{E604} 港股", "\u{E604} 基金", "\u{E604} 期货", "\u{E604} 外汇"])
+        sideMenu = SideMenu2(sourceView: self.view, menuData: [["icon": "\u{E603}", "title": "财经导航", "key": "links"], ["icon": "\u{E600}", "title": "首页", "key": "home"], ["icon": "\u{E602}", "title": "媒体热门", "key": "by_portals"], ["icon": "\u{E601}", "title": "热评资讯", "key": "by_social"], ["icon": "\u{E604}", "title": "滚动新闻", "key": "latest"], ["icon": "\u{E604}", "title": "新股", "key": "ipo"], ["icon": "\u{E604}", "title": "港股", "key": "hk"], ["icon": "\u{E604}", "title": "基金", "key": "fund"], ["icon": "\u{E604}", "title": "期货", "key": "futures"], ["icon": "\u{E604}", "title": "外汇", "key": "forex"]])
+        sideMenu!.delegate = self
+        //tableView.addSubview(sideBar)
+        
         self.refresh()
     }
         
@@ -43,7 +60,7 @@ class HomeViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("hits")
+        //println("hits")
         println(self.tableData)
         return tableData.count
     }
@@ -64,6 +81,16 @@ class HomeViewController: UITableViewController {
         cell.summary.text = rowData["summary"].string
         cell.source.text = rowData["source"].string
         cell.time.text = rowData["timeTxt"].string
+        //println(rowData["commentCnt"].string)
+        cell.comments.hidden = true
+        if let count:Int = rowData["commentCnt"].integer {
+            if count > 0 {
+                let comment:String = "\u{E605} " + String(count)
+                cell.comments.setTitle(comment, forState: UIControlState.Normal)
+                //cell.comments.titleLabel?.text = "\u{E605} " + String(count)
+                cell.comments.hidden = false
+            }
+        }
         //cell.contentView.backgroundColor = UIColor.redColor()
         //cell.contentView.layer.borderWidth = 15
         //cell.contentView.layer.borderColor = UIColor.blueColor().CGColor
@@ -76,12 +103,12 @@ class HomeViewController: UITableViewController {
         
         
         let background = UIView()
-        //cell.backgroundView = background
+        cell.backgroundView = background
         let lay = background.layer
-        lay.borderColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
-        lay.borderWidth = 4
+        //lay.borderColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
+        //lay.borderWidth = 4
         lay.backgroundColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
-        let v2 = UIView(frame: CGRect(x: 8.0, y: 4.0, width: 304.0, height: 112.0))
+        let v2 = UIView(frame: CGRect(x: 8.0, y: 8.0, width: 304.0, height: 122.0))
         v2.layer.backgroundColor = UIColor.whiteColor().CGColor
         v2.layer.borderWidth = 1
         v2.layer.borderColor = ColorHelper.UIColorFromRGB(0xe6e6e3).CGColor
@@ -104,7 +131,7 @@ class HomeViewController: UITableViewController {
     {
         let rowData = self.tableData[indexPath.row].object
         println(tableView.bounds)
-        return 130;
+        return defaultCellHeight
         //return NewsCell.heightForText(rowData["summary"]! as String, bounds: tableView.bounds)
     }
     
@@ -133,18 +160,21 @@ class HomeViewController: UITableViewController {
     func loadMore() {
         println("tring load more")
         self.loadMoreEnabled = false
-        newsHelper.getList2(self.append, page:page++)
+        newsHelper.getList(self.append, page:page++, type: type)
     }
     
     func refresh(_:AnyObject = "")
     {
         println("refreshed")
-        newsHelper.getList2(self.update, page:page++)
+        page = 1
+        newsHelper.getList(self.update, page:page++, type: type)
     }
     
     func setupNavigationItems() {
         var rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "doRefresh")
         self.navigationItem.rightBarButtonItem = rightButton
+        var leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: self, action: "showMenu")
+        self.navigationItem.leftBarButtonItem = leftButton
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)  {
@@ -153,8 +183,30 @@ class HomeViewController: UITableViewController {
             if let selectedRows = self.tableView.indexPathsForSelectedRows() {
                 destination.news = self.tableData[selectedRows[0].row]
             }
+        } else if(segue.identifier == "openNewsComments") {
+            var destination = segue.destinationViewController as CommentsViewController
+            let position = sender.convertPoint(CGPointZero, toView: self.tableView)
+            let path = self.tableView.indexPathForRowAtPoint(position)
+            destination.news = self.tableData[path!.row]
         }
     }
     
+    func buttonPressed(sender: UIButton, id: Int) {
+        println("Button #\(id) pressed..")
+    }
+    
+    func showMenu() {
+        sideBar.animateMe()
+    }
+    
+    func sideMenuDidSelectItemAtIndex(selected:[String:String]){
+        println(index)
+        if (selected["key"] == "links") {
+        } else {
+            type = selected["key"]!
+            refresh()
+            sideMenu?.toggleMenu()
+        }
+    }
 }
 
