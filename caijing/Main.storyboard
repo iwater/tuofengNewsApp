@@ -67,7 +67,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="w7G-FS-bhu" firstAttribute="leading" secondItem="zX9-rb-3x0" secondAttribute="leading" id="15N-4i-HCp"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="zX9-rb-3x0" secondAttribute="bottom" constant="16" id="2jN-pc-ymU"/>
+                                        <constraint firstAttribute="bottom" secondItem="zX9-rb-3x0" secondAttribute="bottom" constant="12" id="2jN-pc-ymU"/>
                                         <constraint firstItem="w7G-FS-bhu" firstAttribute="top" secondItem="Ko8-Ca-8wr" secondAttribute="bottom" id="6W8-eC-XLe"/>
                                         <constraint firstItem="Ko8-Ca-8wr" firstAttribute="top" secondItem="13F-S5-LAi" secondAttribute="topMargin" constant="12" id="E9U-k2-ZgO"/>
                                         <constraint firstItem="zX9-rb-3x0" firstAttribute="top" secondItem="OV8-tE-eXM" secondAttribute="top" id="PnR-Tg-61A"/>

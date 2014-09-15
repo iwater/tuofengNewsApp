@@ -22,11 +22,13 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
     
     @IBAction func HandleGesture(sender: AnyObject) {
         println("fired")
+        view.userInteractionEnabled = false
         sideMenu?.toggleMenu()
     }
     //@IBOutlet var newsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Bordered, target:nil, action:nil)
         self.title = "驼峰财经·首页"
         //self.navigationController?.hidesBarsOnTap = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -110,7 +112,7 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
         //lay.borderColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
         //lay.borderWidth = 4
         lay.backgroundColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
-        let v2 = UIView(frame: CGRect(x: 8.0, y: 8.0, width: 304.0, height: 122.0))
+        let v2 = UIView(frame: CGRect(x: 8.0, y: 8.0, width: 304.0, height: 112.0))
         v2.layer.backgroundColor = UIColor.whiteColor().CGColor
         v2.layer.borderWidth = 1
         v2.layer.borderColor = ColorHelper.UIColorFromRGB(0xe6e6e3).CGColor

@@ -27,13 +27,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController?.navigationBar
-        //self.navigationController?.hidesBarsOnTap = true
-        self.navigationController?.navigationBar.tintColor = ColorHelper.UIColorFromRGB(0xffffff)
-        self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
-        //println(navigationController?.navigationBar.backItem)
-        var back = navigationController?.navigationBar.backItem
-        //println(news)
+        self.title = "驼峰·正文"
         
         newsHelper.getLArticle(self.update, id: news["id"].integer!)
         

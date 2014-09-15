@@ -19,10 +19,20 @@ class CommentsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "驼峰财经·评论"
+        self.title = "驼峰·评论"
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100.0
         newsHelper.getLArticleComments(self.update, id: news["id"].integer!, page: page++)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        // fix ios8 BUG: cell separtor left margin
+        // http://stackoverflow.com/questions/25128117/ios-8-setting-setseparatorinset-to-zero
+        // http://openradar.io/17678622
+        let systemVersion = UIDevice.currentDevice().systemVersion as NSString
+        if systemVersion.doubleValue >= 8.0 {
+            self.tableView.layoutMargins = UIEdgeInsetsZero
+        }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,10 +57,41 @@ class CommentsViewController: UITableViewController {
         cell.user.text = rowData["msg_username"].string
         cell.time.text = rowData["timeTxt"].string
         if let avatar_url:String = rowData["user"]["profile_image_url"].string {
-        //let urlString: NSString = rowData["user"]["profile_image_url"].string as? NSString
-        let imgURL: NSURL = NSURL(string: avatar_url)
-        let imgData: NSData = NSData(contentsOfURL: imgURL)
-        cell.avatar.image = UIImage(data: imgData)
+            //let urlString: NSString = rowData["user"]["profile_image_url"].string as? NSString
+            //let imgURL: NSURL = NSURL(string: avatar_url)
+            //let imgData: NSData = NSData(contentsOfURL: imgURL)
+            //cell.avatar.image = UIImage(data: imgData)
+            cell.avatar.layer.cornerRadius = 18
+            cell.avatar.clipsToBounds = true
+            
+            
+            // If the image does not exist, we need to download it
+            var imgURL: NSURL = NSURL(string: avatar_url)
+            
+            // Download an NSData representation of the image at the URL
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                if error == nil {
+                    cell.avatar.image = UIImage(data: data)
+                    
+                    // Store the image in to our cache
+                    //self.imageCache[urlString] = image
+                    //if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) {
+                    //    cellToUpdate.imageView.image = image
+                    //}
+                }
+                else {
+                    println("Error: \(error.localizedDescription)")
+                }
+            })
+        }
+        
+        // fix ios8 BUG: cell separtor left margin
+        // http://stackoverflow.com/questions/25128117/ios-8-setting-setseparatorinset-to-zero
+        // http://openradar.io/17678622
+        let systemVersion = UIDevice.currentDevice().systemVersion as NSString
+        if systemVersion.doubleValue >= 8.0 {
+            cell.layoutMargins = UIEdgeInsetsZero
         }
         
         cell.setNeedsUpdateConstraints()

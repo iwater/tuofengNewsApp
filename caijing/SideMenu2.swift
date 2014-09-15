@@ -69,7 +69,7 @@ class SideMenu2 : NSObject, MenuTableViewControllerDelegate {
         sideMenuTableViewController.tableView.frame = sideMenuContainerView.bounds
         sideMenuTableViewController.tableView.clipsToBounds = false
         sideMenuTableViewController.tableView.separatorStyle = .SingleLine
-        sideMenuTableViewController.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        sideMenuTableViewController.tableView.separatorInset = UIEdgeInsetsZero
         sideMenuTableViewController.tableView.backgroundColor = UIColor.clearColor()
         sideMenuTableViewController.tableView.scrollsToTop = false
         sideMenuTableViewController.tableView.contentInset = UIEdgeInsetsMake(menuTableViewTopInset, 0, 0, 0)
