@@ -16,7 +16,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var avatar: UIImageView!
     
     class func heightForText(text: String, bounds: CGRect) -> CGFloat {
-        let space:CGFloat = 32.0
+        let space:CGFloat = 44.0
         let width = bounds.width - space
         var size = text.boundingRectWithSize(CGSizeMake(width, CGFloat.max),
         options: NSStringDrawingOptions.UsesLineFragmentOrigin,
@@ -24,6 +24,6 @@ class CommentCell: UITableViewCell {
         context: nil)
         let h = size.height
         println(h)
-        return 100;
+        return h+60;
     }
 }

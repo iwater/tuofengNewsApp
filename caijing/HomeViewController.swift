@@ -51,6 +51,8 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
         sideMenu!.delegate = self
         //tableView.addSubview(sideBar)
         
+        self.tableView.estimatedRowHeight = defaultCellHeight
+        
         self.refresh()
     }
         
@@ -127,13 +129,13 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    /*override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         let rowData = self.tableData[indexPath.row].object
         println(tableView.bounds)
         return defaultCellHeight
         //return NewsCell.heightForText(rowData["summary"]! as String, bounds: tableView.bounds)
-    }
+    }*/
     
     func doRefresh() {
         self.refresh("")

@@ -53,18 +53,25 @@ class CommentsViewController: UITableViewController {
         cell.avatar.image = UIImage(data: imgData)
         }
         
+        cell.setNeedsUpdateConstraints()
+        cell.updateConstraintsIfNeeded()
+        
         return cell
     }
     
-    /*override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
+        let systemVersion = UIDevice.currentDevice().systemVersion as NSString
+        if systemVersion.doubleValue >= 8.0 {
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }
         let rowData:JSONValue = self.tableData[indexPath.row]
         println(tableView.bounds)
         let h = CommentCell.heightForText(rowData["msg_content"].string!, bounds: tableView.bounds)
         println(h)
-        return 98
+        return h
         //return NewsCell.heightForText(rowData["summary"]! as String, bounds: tableView.bounds)
-    }*/
+    }
     
     func update(data:[JSONValue]) {
         self.tableData = data
