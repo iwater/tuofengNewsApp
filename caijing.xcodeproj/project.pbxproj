@@ -29,7 +29,8 @@
 		21C6BFB119B8545600DE8ACE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21C6BFB019B8545600DE8ACE /* Main.storyboard */; };
 		21D5CAC319C2BEE500807913 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5CAC219C2BEE500807913 /* CommentsViewController.swift */; };
 		21D5CAC619C3047000807913 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5CAC519C3047000807913 /* CommentCell.swift */; };
-		73356A9DA7D64C08B292B319 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD0EAAAECEE4714B7D96A29 /* libPods.a */; };
+		21EE1D1319C9AA27004603DC /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EE1D1219C9AA27004603DC /* ContentViewController.swift */; };
+		21EE1D7C19C9CF1E004603DC /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21EE1D7B19C9CF1E004603DC /* Main2.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,8 @@
 		21C6BFB019B8545600DE8ACE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		21D5CAC219C2BEE500807913 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		21D5CAC519C3047000807913 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		21EE1D1219C9AA27004603DC /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		21EE1D7B19C9CF1E004603DC /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		5CD0EAAAECEE4714B7D96A29 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86995A342004B978DCF107B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,7 +153,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2113DB0E19B5C492001F1065 /* Alamofire.framework in Frameworks */,
-				73356A9DA7D64C08B292B319 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,8 +222,8 @@
 		219DE90519B46EE000199D0D /* caijing */ = {
 			isa = PBXGroup;
 			children = (
+				21EE1D7B19C9CF1E004603DC /* Main2.storyboard */,
 				211FB09D19C564F5003732B5 /* menu */,
-				211FB08F19C3F965003732B5 /* loading.png */,
 				21D5CAC219C2BEE500807913 /* CommentsViewController.swift */,
 				21C6BFB019B8545600DE8ACE /* Main.storyboard */,
 				2113632719BDBEA100DDDA17 /* HomeItemCell.swift */,
@@ -237,6 +239,7 @@
 				211FB09119C46B2D003732B5 /* SideMenu.swift */,
 				219DE90619B46EE000199D0D /* Supporting Files */,
 				210FB8E919C5DA02007BB7B0 /* caijing-Bridging-Header.h */,
+				21EE1D1219C9AA27004603DC /* ContentViewController.swift */,
 			);
 			path = caijing;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 		219DE90619B46EE000199D0D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				211FB08F19C3F965003732B5 /* loading.png */,
 				211FB09E19C586C9003732B5 /* icomoon.ttf */,
 				219DE90719B46EE000199D0D /* Info.plist */,
 			);
@@ -420,6 +424,7 @@
 				211FB09019C3F965003732B5 /* loading.png in Resources */,
 				219DE91019B46EE000199D0D /* Images.xcassets in Resources */,
 				211FB09819C4A0BF003732B5 /* MenuCell.xib in Resources */,
+				21EE1D7C19C9CF1E004603DC /* Main2.storyboard in Resources */,
 				21C6BFB119B8545600DE8ACE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +486,7 @@
 				2113632619BDBA1F00DDDA17 /* HomeViewController.swift in Sources */,
 				216C985E19B8076E0025F8F3 /* DetailViewController.swift in Sources */,
 				219DE90919B46EE000199D0D /* AppDelegate.swift in Sources */,
+				21EE1D1319C9AA27004603DC /* ContentViewController.swift in Sources */,
 				211FB09419C49773003732B5 /* MenuTableViewController.swift in Sources */,
 				2113631F19BCA98F00DDDA17 /* ColorHelper.swift in Sources */,
 				21D5CAC319C2BEE500807913 /* CommentsViewController.swift in Sources */,

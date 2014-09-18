@@ -27,6 +27,16 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     
+    @IBAction func showSources(sender: AnyObject) {
+        UIActionSheet(title: "Title", delegate: nil, cancelButtonTitle: "Cancel", destructiveButtonTitle: "OK").showInView(self.view)
+        
+        //UIActionSheet(title: "Title", delegate: nil, cancelButtonTitle: "Cancel", destructiveButtonTitle: "OK").showInView(self.view)
+            
+        /*{
+                (actionSheet, selectedButton) -> Void in
+            println("selected button:\(selectedButton)")
+        }*/
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "驼峰·正文"
@@ -40,6 +50,20 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let summary = news!["long_summary"].string {
             self.displaySummary(summary)
         }
+        println("viewDidLoad")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        println("viewDidAppear")
+    }
+    
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        println("updateViewConstraints")
+        //self.sourceLabel.autoSetContentCompressionResistancePriorityForAxis(.Vertical)
+        self.sourceLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 20)
+        self.sourceLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 20)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -83,18 +107,19 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func update(json:JSONValue) {
         self.newsDetail = json
-        println(newsDetail)
+        //println(newsDetail)
         if let summary:String = newsDetail!["newsDetail"]["article"]["summary"].string {
             self.displaySummary(summary)
             println(summary)
             println("hit")
             println(self.contentView.contentSize)
-            self.contentView.frame = CGRectMake(self.contentView.frame.origin.x, self.contentView.frame.origin.y, self.contentView.contentSize.width, self.contentView.contentSize.height);
-            self.view.setNeedsLayout()
-            view.layoutSubviews()
+            //self.contentView.frame = CGRectMake(self.contentView.frame.origin.x, self.contentView.frame.origin.y, self.contentView.contentSize.width, self.contentView.contentSize.height);
+            //view.layoutSubviews()
             println(self.scroller.contentSize)
             println(self.scroller.scrollEnabled)
-            self.scroller.contentSize = CGSizeMake(self.scroller.frame.size.width, self.contentView.frame.origin.y + self.contentView.frame.size.height)
+            self.scroller.contentSize = CGSizeMake(self.scroller.frame.size.width, self.contentView.frame.origin.y + self.contentView.frame.size.height+500)
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
         }
     }
     

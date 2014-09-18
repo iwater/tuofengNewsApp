@@ -31,7 +31,6 @@ class NewsHelper {
         let url = URL + "news/\(type)/"
         Alamofire.request(.GET, type == "home" ? URL : url, parameters: ["page": page, "type": "json"])
             .responseJSON {(request, response, JSON, error) in
-                println(request)
                 if let data: AnyObject = JSON? {
                     let json:[JSONValue] = JSONValue(data).array!
                     callback(json)
@@ -41,7 +40,6 @@ class NewsHelper {
     
     func getLArticle(callback:((JSONValue)->Void), id:Int) {
         let url = URL_Article + "\(id)/"
-        println(url)
         Alamofire.request(.GET, url, parameters: ["type": "json"])
             .responseJSON {(request, response, JSON, error) in
                 if let data: AnyObject = JSON? {
@@ -52,7 +50,6 @@ class NewsHelper {
     
     func getLArticleComments(callback:(([JSONValue])->Void), id:Int, page:Int = 1) {
         let url = URL_Article + "\(id)/comments/"
-        println(url)
         Alamofire.request(.GET, url, parameters: ["page": page, "type": "json"])
             .responseJSON {(request, response, JSON, error) in
                 if let data: AnyObject = JSON? {

@@ -65,7 +65,7 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //println("hits")
-        println(self.tableData)
+        //println(self.tableData)
         return tableData.count
     }
     
@@ -192,6 +192,11 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
             let position = sender.convertPoint(CGPointZero, toView: self.tableView)
             let path = self.tableView.indexPathForRowAtPoint(position)
             destination.news = self.tableData[path!.row]
+        } else if (segue.identifier == "openNews2") {
+            var destination = segue.destinationViewController as ContentViewController
+            if let selectedRows = self.tableView.indexPathsForSelectedRows() {
+                destination.news = self.tableData[selectedRows[0].row]
+            }
         }
     }
     
