@@ -25,6 +25,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var summary: UITextView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var showSourceButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +40,33 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.displaySummary(content)
         }
         
+        showSourceButton.backgroundColor = ColorHelper.UIColorFromRGB(0xf0f0f0)
+        showSourceButton.layer.borderColor = ColorHelper.UIColorFromRGB(0xd9d9d7).CGColor
+        showSourceButton.layer.borderWidth = 0.5
+        showSourceButton.layer.masksToBounds = true
+        showSourceButton.layer.cornerRadius = 3
+        view.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
+        summary.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
+        tableView.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
+        
+        setTableViewHeader()
+        
         newsHelper.getLArticle(self.update, id: news["id"].integer!)
     }
     
+    func setTableViewHeader() {
+        var headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 40))
+        headerView.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
+        var label = UILabel(frame: CGRectMake(16, 16, 100, 25))
+        label.text = "延展悦读"
+        label.font = UIFont(name:"HelveticaNeue-Light", size: 12)
+        label.textColor = ColorHelper.UIColorFromRGB(0x999999)
+        headerView.addSubview(label)
+        tableView.tableHeaderView = headerView
+    }
+    
     func displaySummary(summary: String){
-        let fontSize:CGFloat = 17.0
+        let fontSize:CGFloat = 18.0
         
         var content : NSMutableAttributedString!
         content = NSMutableAttributedString(string:summary, attributes: [
@@ -78,9 +102,31 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.tableData = related
             self.tableView.reloadData()
         }
+        self.tableHeightConstraint.constant = self.tableView.contentSize.height
+        self.tableView.needsUpdateConstraints()
     }
+    
     @IBAction func showSources(sender: AnyObject) {
-        UIActionSheet(title: "Title", delegate: nil, cancelButtonTitle: "Cancel", destructiveButtonTitle: "OK").showInView(self.view)
+        //UIActionSheet(title: "Title", delegate: nil, cancelButtonTitle: "Cancel", destructiveButtonTitle: "OK").showInView(self.view)
+        let destructiveButtonTitle = NSLocalizedString("Destructive Choice", comment: "")
+        let otherButtonTitle = NSLocalizedString("Safe Choice", comment: "")
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        // Create the actions.
+        let destructiveAction = UIAlertAction(title: destructiveButtonTitle, style: .Destructive) { action in
+            NSLog("The \"Other\" alert action sheet's destructive action occured.")
+        }
+        
+        let otherAction = UIAlertAction(title: otherButtonTitle, style: .Default) { action in
+            NSLog("The \"Other\" alert action sheet's other action occured.")
+        }
+        
+        // Add the actions.
+        alertController.addAction(destructiveAction)
+        alertController.addAction(otherAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,6 +139,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         let rowData:JSONValue = self.tableData[indexPath.row]
         println(rowData.object)
         cell.textLabel?.text = rowData["title"].string
+        cell.textLabel?.textColor = ColorHelper.UIColorFromRGB(0x4d4d4d)
         return cell
     }
     

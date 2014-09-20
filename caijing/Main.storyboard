@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L04-TJ-LFn">
     <dependencies>
-        <deployment version="1808" identifier="iOS"/>
+        <deployment version="1808" defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -20,12 +20,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <gestureRecognizers/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="newsCell" id="0hb-Qe-Owu" customClass="HomeItemCell" customModule="caijing" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newsCell" id="0hb-Qe-Owu" customClass="HomeItemCell" customModule="caijing" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0hb-Qe-Owu" id="13F-S5-LAi">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="十五的月亮十六圆 最圆月亮9日9点38分将现" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ko8-Ca-8wr">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="十五的月亮十六圆 最圆月亮9日9点38分将现" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ko8-Ca-8wr">
                                             <rect key="frame" x="16" y="20" width="255" height="20"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -43,7 +43,7 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvW-7f-CmF">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvW-7f-CmF">
                                             <rect key="frame" x="201" y="91" width="78" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="78" id="vBa-9i-901"/>
@@ -56,7 +56,7 @@
                                                 <segue destination="Cwa-cF-zqh" kind="push" identifier="openNewsComments" id="MSg-bL-Mfx"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="3" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7G-FS-bhu">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="characterWrap" numberOfLines="3" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7G-FS-bhu">
                                             <rect key="frame" x="16" y="40" width="255" height="49"/>
                                             <string key="text">俗话说，“十五的月亮十六圆”，今年农历八月的月亮印证了这句老话。中国天文学会会员、天津市天文学会理事史志成告诉记者，今年农历八月最圆的月亮将出现在9日(农历八月十六)9时38分。细心的公众翻阅天文台历会发现，2011年、2012年和2013年，中秋月连续三年都是“十五的月亮十五圆”。</string>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -128,18 +128,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-XN-7xZ">
-                                        <rect key="frame" x="0.0" y="95" width="320" height="217"/>
+                                        <rect key="frame" x="8" y="95" width="304" height="234"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="320" id="PRX-oq-LrC"/>
-                                        </constraints>
-                                        <mutableString key="text">“除了开卖首日的行货，来自美国、日本、加拿大和澳大利亚的各国无锁版水货将会先后运到香港。目前每10个订单中至少有5单来自内地。”旺角先达广场资深手机店主刘志刚告诉记者，最缺货的128G金色iPhone 6 Plus首日回收价将在2万港元左右，每部iPhone 6转手的利润率最少也有100%。
-如此稳赚不赔的买卖，精明的港人自然不会错过。继9月12日启动的网络订购导致港股成交量骤降三成后，16日开启的实体店预购同样供不应求。为了满足香港的“大胃口”，苹果决定从9月20日起每天早上8点开放实体店预购；内地果粉亦可登记身份证号参与抢购。</mutableString>
+                                        <string key="text">“除了开卖首日的行货，来自美国、日本、加拿大和澳大利亚的各国无锁版水货将会先后运到香港。目前每10个订单中至少有5单来自内地。”旺角先达广场资深手机店主刘志刚告诉记者，最缺货的128G金色iPhone 6 Plus首日回收价将在2万港元左右，每部iPhone 6转手的利润率最少也有100%。
+如此稳赚不赔的买卖，精明的港人自然不会错过。继9月12日启动的网络订购导致港股成交量骤降三成后，16日开启的实体店预购同样供不应求。为了满足香港的“大胃口”，苹果决定从9月20日起每天早上8点开放实体店预购；内地果粉亦可登记身份证号参与抢购。</string>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dS9-Xv-xAQ">
-                                        <rect key="frame" x="110" y="320" width="100" height="34"/>
+                                        <rect key="frame" x="28" y="337" width="264" height="34"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="查看原文">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -156,15 +154,20 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="so6-WS-ucW">
                                         <rect key="frame" x="0.0" y="362" width="320" height="198"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="440" id="PMQ-sP-yjf"/>
+                                        </constraints>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sourceCell" textLabel="prO-1y-vEY" style="IBUITableViewCellStyleDefault" id="lez-Co-jkt">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sourceCell" textLabel="prO-1y-vEY" style="IBUITableViewCellStyleDefault" id="lez-Co-jkt">
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lez-Co-jkt" id="CsR-bf-L7y">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="prO-1y-vEY">
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -183,13 +186,13 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="hB3-l0-6wQ" secondAttribute="centerX" id="8t4-AG-Rm0"/>
-                                    <constraint firstItem="dS9-Xv-xAQ" firstAttribute="leading" secondItem="Au3-eh-P06" secondAttribute="leading" constant="110" id="BcY-KP-ZJh"/>
-                                    <constraint firstAttribute="trailing" secondItem="Asb-XN-7xZ" secondAttribute="trailing" id="EfI-FH-23N"/>
-                                    <constraint firstAttribute="trailing" secondItem="dS9-Xv-xAQ" secondAttribute="trailing" constant="110" id="Iwx-70-b8f"/>
+                                    <constraint firstItem="dS9-Xv-xAQ" firstAttribute="leading" secondItem="Au3-eh-P06" secondAttribute="leading" constant="28" id="BcY-KP-ZJh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Asb-XN-7xZ" secondAttribute="trailing" constant="8" id="EfI-FH-23N"/>
+                                    <constraint firstAttribute="trailing" secondItem="dS9-Xv-xAQ" secondAttribute="trailing" constant="28" id="Iwx-70-b8f"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="6AJ-Jb-7mO" secondAttribute="trailing" constant="270" id="MMh-Oj-eZx"/>
                                     <constraint firstItem="so6-WS-ucW" firstAttribute="top" secondItem="dS9-Xv-xAQ" secondAttribute="bottom" constant="8" id="O8D-fO-Web"/>
                                     <constraint firstItem="hB3-l0-6wQ" firstAttribute="leading" secondItem="Au3-eh-P06" secondAttribute="leading" constant="8" id="OH8-kh-PIG"/>
-                                    <constraint firstItem="Asb-XN-7xZ" firstAttribute="leading" secondItem="Au3-eh-P06" secondAttribute="leading" id="Rxm-Fj-S8d"/>
+                                    <constraint firstItem="Asb-XN-7xZ" firstAttribute="leading" secondItem="Au3-eh-P06" secondAttribute="leading" constant="8" id="Rxm-Fj-S8d"/>
                                     <constraint firstItem="Asb-XN-7xZ" firstAttribute="top" secondItem="6AJ-Jb-7mO" secondAttribute="bottom" constant="8" id="TAe-SE-0MS"/>
                                     <constraint firstItem="6AJ-Jb-7mO" firstAttribute="leading" secondItem="Au3-eh-P06" secondAttribute="leading" constant="8" id="ZpO-0T-hNv"/>
                                     <constraint firstItem="Asb-XN-7xZ" firstAttribute="centerX" secondItem="Au3-eh-P06" secondAttribute="centerX" id="e7K-rV-zPT"/>
@@ -214,7 +217,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="CAZ-B8-E7T"/>
                     <connections>
+                        <outlet property="showSourceButton" destination="dS9-Xv-xAQ" id="a0A-sz-3AQ"/>
                         <outlet property="summary" destination="Asb-XN-7xZ" id="oMp-jM-zuY"/>
+                        <outlet property="tableHeightConstraint" destination="PMQ-sP-yjf" id="Lme-or-g5q"/>
                         <outlet property="tableView" destination="so6-WS-ucW" id="560-zc-Yjo"/>
                         <outlet property="timeLabel" destination="6AJ-Jb-7mO" id="XJ5-c3-WhJ"/>
                         <outlet property="titleLabel" destination="hB3-l0-6wQ" id="d9b-vs-u98"/>
