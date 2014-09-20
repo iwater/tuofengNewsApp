@@ -182,12 +182,7 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)  {
-        if (segue.identifier == "openNews") {
-            var destination = segue.destinationViewController as DetailViewController
-            if let selectedRows = self.tableView.indexPathsForSelectedRows() {
-                destination.news = self.tableData[selectedRows[0].row]
-            }
-        } else if(segue.identifier == "openNewsComments") {
+        if(segue.identifier == "openNewsComments") {
             var destination = segue.destinationViewController as CommentsViewController
             let position = sender.convertPoint(CGPointZero, toView: self.tableView)
             let path = self.tableView.indexPathForRowAtPoint(position)

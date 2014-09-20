@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-func lend2<T where T:NSObject> (closure:(T)->()) -> T {
+func lend<T where T:NSObject> (closure:(T)->()) -> T {
     let orig = T()
     closure(orig)
     return orig
 }
 
-class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate {
     var tableData:[JSONValue] = []
     var news:JSONValue!
     var newsDetail:JSONValue?
@@ -94,7 +94,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func update(json:JSONValue) {
         self.newsDetail = json
-        println(self.newsDetail!["related"]["related"])
+        println(self.newsDetail)
         if let summary:String = newsDetail!["newsDetail"]["article"]["summary"].string {
             self.displaySummary(summary)
         }
@@ -108,25 +108,31 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func showSources(sender: AnyObject) {
         //UIActionSheet(title: "Title", delegate: nil, cancelButtonTitle: "Cancel", destructiveButtonTitle: "OK").showInView(self.view)
-        let destructiveButtonTitle = NSLocalizedString("Destructive Choice", comment: "")
-        let otherButtonTitle = NSLocalizedString("Safe Choice", comment: "")
-        
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        
-        // Create the actions.
-        let destructiveAction = UIAlertAction(title: destructiveButtonTitle, style: .Destructive) { action in
-            NSLog("The \"Other\" alert action sheet's destructive action occured.")
+        if let gotModernAlert: AnyClass = NSClassFromString("UIAlertController") {
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            
+            if let sources:[JSONValue] = self.newsDetail!["sources"]["sources"].array {
+                for source in sources {
+                    let action = UIAlertAction(title: source["source"].string!, style: .Default) { action in
+                        println(source)
+                        var webview = self.storyboard?.instantiateViewControllerWithIdentifier("WebviewController") as WebviewController
+                        webview.post = source
+                        self.showDetailViewController(webview, sender: nil)
+                    }
+                    alertController.addAction(action)
+                }
+            }
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        } else {
+            let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: nil, destructiveButtonTitle: nil)
+            if let sources:[JSONValue] = self.newsDetail!["sources"]["sources"].array {
+                for source in sources {
+                    actionSheet.addButtonWithTitle(source["source"].string!)
+                }
+            }
+            actionSheet.showInView(self.view)
         }
-        
-        let otherAction = UIAlertAction(title: otherButtonTitle, style: .Default) { action in
-            NSLog("The \"Other\" alert action sheet's other action occured.")
-        }
-        
-        // Add the actions.
-        alertController.addAction(destructiveAction)
-        alertController.addAction(otherAction)
-        
-        presentViewController(alertController, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -147,6 +153,17 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         var destination = segue.destinationViewController as ContentViewController
         if let selectedRows = self.tableView.indexPathsForSelectedRows() {
             destination.news = self.tableData[selectedRows[0].row]
+        }
+    }
+    
+    //UIActionSheetDelegate
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        println(buttonIndex)
+        if let sources:[JSONValue] = self.newsDetail!["sources"]["sources"].array {
+            var webview = self.storyboard?.instantiateViewControllerWithIdentifier("WebviewController") as WebviewController
+            webview.post = sources[buttonIndex]
+            self.navigationController?.pushViewController(webview, animated: true)
+            //self.showDetailViewController(webview, sender: nil)
         }
     }
 }
