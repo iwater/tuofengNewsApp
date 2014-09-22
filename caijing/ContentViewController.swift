@@ -125,7 +125,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             
             presentViewController(alertController, animated: true, completion: nil)
         } else {
-            let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: nil, destructiveButtonTitle: nil)
+            let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil)
             if let sources:[JSONValue] = self.newsDetail!["sources"]["sources"].array {
                 for source in sources {
                     actionSheet.addButtonWithTitle(source["source"].string!)

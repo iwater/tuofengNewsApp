@@ -9,25 +9,28 @@
 import Foundation
 import UIKit
 
-class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDelegate {
+class HomeViewController: UITableViewController {
     let newsHelper = NewsHelper()
     var tableData:[JSONValue] = []
     var page = 1
     var type = "home"
     var loadMoreEnabled = false
     let defaultCellHeight:CGFloat = 130
-    var sideBar: SideMenu!
-    var sideMenu : SideMenu2?
+    //var sideBar: SideMenu!
+    //var sideMenu : SideMenu2?
     //var refreshControl:UIRefreshControl!
     
     @IBAction func HandleGesture(sender: AnyObject) {
         println("fired")
         view.userInteractionEnabled = false
-        sideMenu?.toggleMenu()
+        //sideMenu?.toggleMenu()
     }
     //@IBOutlet var newsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Bordered, target:nil, action:nil)
         self.title = "驼峰财经·首页"
         //self.navigationController?.hidesBarsOnTap = false
@@ -44,14 +47,6 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
         self.setupNavigationItems()
         
         //self.tableView.contentOffset = CGPointMake(0, -self.refreshControl?.frame.size.height)
-        
-        sideBar = SideMenu(view: view)
-        sideBar.delegate = self
-        
-        //sideMenu = SideMenu2(sourceView: self.view, menuData: [{"\u{E603} 财经导航"}, "\u{E600} 首页", "\u{E602} 媒体热门", "\u{E601} 热评资讯", "\u{E604} 滚动新闻", "\u{E604} 新股", "\u{E604} 港股", "\u{E604} 基金", "\u{E604} 期货", "\u{E604} 外汇"])
-        sideMenu = SideMenu2(sourceView: self.view, menuData: [["icon": "\u{E603}", "title": "财经导航", "key": "links"], ["icon": "\u{E600}", "title": "首页", "key": "home"], ["icon": "\u{E602}", "title": "媒体热门", "key": "by_portals"], ["icon": "\u{E601}", "title": "热评资讯", "key": "by_social"], ["icon": "\u{E604}", "title": "滚动新闻", "key": "latest"], ["icon": "\u{E604}", "title": "新股", "key": "ipo"], ["icon": "\u{E604}", "title": "港股", "key": "hk"], ["icon": "\u{E604}", "title": "基金", "key": "fund"], ["icon": "\u{E604}", "title": "期货", "key": "futures"], ["icon": "\u{E604}", "title": "外汇", "key": "forex"]])
-        sideMenu!.delegate = self
-        //tableView.addSubview(sideBar)
         
         self.tableView.estimatedRowHeight = defaultCellHeight
         
@@ -177,7 +172,7 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
     func setupNavigationItems() {
         var rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "doRefresh")
         self.navigationItem.rightBarButtonItem = rightButton
-        var leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: self, action: "showMenu")
+        var leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: revealViewController(), action: "revealToggle:")
         self.navigationItem.leftBarButtonItem = leftButton
     }
     
@@ -187,30 +182,11 @@ class HomeViewController: UITableViewController, SideViewDelegate, SideMenuDeleg
             let position = sender.convertPoint(CGPointZero, toView: self.tableView)
             let path = self.tableView.indexPathForRowAtPoint(position)
             destination.news = self.tableData[path!.row]
-        } else if (segue.identifier == "openNews2") {
+        } else if (segue.identifier == "openNews") {
             var destination = segue.destinationViewController as ContentViewController
             if let selectedRows = self.tableView.indexPathsForSelectedRows() {
                 destination.news = self.tableData[selectedRows[0].row]
             }
         }
     }
-    
-    func buttonPressed(sender: UIButton, id: Int) {
-        println("Button #\(id) pressed..")
-    }
-    
-    func showMenu() {
-        sideBar.animateMe()
-    }
-    
-    func sideMenuDidSelectItemAtIndex(selected:[String:String]){
-        println(index)
-        if (selected["key"] == "links") {
-        } else {
-            type = selected["key"]!
-            refresh()
-            sideMenu?.toggleMenu()
-        }
-    }
 }
-
