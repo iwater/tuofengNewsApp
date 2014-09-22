@@ -104,6 +104,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         self.tableHeightConstraint.constant = self.tableView.contentSize.height
         self.tableView.needsUpdateConstraints()
+        if self.tableData.count == 0 {
+          self.tableView.hidden = true
+        }
     }
     
     @IBAction func showSources(sender: AnyObject) {
@@ -117,10 +120,15 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                         println(source)
                         var webview = self.storyboard?.instantiateViewControllerWithIdentifier("WebviewController") as WebviewController
                         webview.post = source
-                        self.showDetailViewController(webview, sender: nil)
+                        self.navigationController?.pushViewController(webview, animated: true)
+                        //self.showDetailViewController(webview, sender: nil)
                     }
                     alertController.addAction(action)
                 }
+                let cancelAction = UIAlertAction(title: "返回", style: .Default, handler: { action in
+                    alertController.dismissViewControllerAnimated(true, completion: nil)
+                })
+                alertController.addAction(cancelAction)
             }
             
             presentViewController(alertController, animated: true, completion: nil)
@@ -146,6 +154,8 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         println(rowData.object)
         cell.textLabel?.text = rowData["title"].string
         cell.textLabel?.textColor = ColorHelper.UIColorFromRGB(0x4d4d4d)
+        //cell.layer.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
+        cell.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
         return cell
     }
     
