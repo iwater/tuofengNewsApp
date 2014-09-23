@@ -19,7 +19,7 @@ class CommentsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "驼峰·评论"
+        navigationItem.titleView = TitleView(frame: CGRectMake(0, 0, 220, 25), title: "评论")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100.0
         newsHelper.getLArticleComments(self.update, id: news["id"].integer!, page: page++)

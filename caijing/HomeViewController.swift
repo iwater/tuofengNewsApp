@@ -53,52 +53,7 @@ class HomeViewController: UITableViewController {
         
         self.tableView.estimatedRowHeight = defaultCellHeight
         
-        println(navigationItem.titleView?.frame)
-        var tv = UIView(frame: CGRectMake(0, 0, 220, 25))
-        tv.backgroundColor = UIColor.clearColor()
-        
-        var label = UILabel(frame: CGRectMake(16, 16, 100, 25))
-        label.text = "· " + self.titleStr
-        label.font = UIFont(name:"Heiti-SC", size: 14)
-        label.textColor = UIColor.whiteColor()
-        
-        var iv = UIImageView(image: UIImage(named: "tf"))
-        var cr = UIView(frame: CGRectMake(0, 0, 40, 21))
-        cr.backgroundColor = UIColor.whiteColor()
-        cr.layer.borderColor = UIColor.whiteColor().CGColor
-        cr.layer.borderWidth = 2
-        cr.layer.cornerRadius = 2
-        iv.frame = CGRectMake(2, 2, 36, 17)
-        cr.addSubview(iv)
-        
-        tv.addSubview(cr)
-        tv.addSubview(label)
-        
-        //iv.setTranslatesAutoresizingMaskIntoConstraints(false)
-        cr.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        
-        var viewsDict = Dictionary <String, UIView>()
-        viewsDict["logo"] = cr
-        viewsDict["title"] = label
-        
-        tv.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-[title]-|", options: nil, metrics: nil, views: viewsDict))
-        tv.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:[logo(21)]", options: nil, metrics: nil, views: viewsDict))
-        tv.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:[logo(40)]", options: nil, metrics: nil, views: viewsDict))
-        tv.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-2-[logo]", options: nil, metrics: nil, views: viewsDict))
-        tv.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-[logo]-[title]", options: nil, metrics: nil,
-                views: viewsDict))
-        navigationItem.titleView = tv
+        navigationItem.titleView = TitleView(frame: CGRectMake(0, 0, 220, 25), title: self.titleStr)
         
         self.refresh()
     }

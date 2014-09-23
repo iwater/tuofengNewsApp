@@ -30,8 +30,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Bordered, target:nil, action:nil)
-        self.title = "驼峰·正文"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Bordered, target:nil, action:nil)
+        navigationItem.titleView = TitleView(frame: CGRectMake(0, 0, 220, 25), title: "正文")
+
         
         titleLabel.text = news["title"].string
         timeLabel.text = news["publish_time"].string

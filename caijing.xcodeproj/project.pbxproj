@@ -28,6 +28,7 @@
 		219DE91C19B46EE100199D0D /* caijingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219DE91B19B46EE100199D0D /* caijingTests.swift */; };
 		21D5CAC319C2BEE500807913 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5CAC219C2BEE500807913 /* CommentsViewController.swift */; };
 		21D5CAC619C3047000807913 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5CAC519C3047000807913 /* CommentCell.swift */; };
+		21E4896219D13D5600C497ED /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E4896119D13D5600C497ED /* TitleView.swift */; };
 		21EE1D1319C9AA27004603DC /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EE1D1219C9AA27004603DC /* ContentViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,7 @@
 		219DE91B19B46EE100199D0D /* caijingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caijingTests.swift; sourceTree = "<group>"; };
 		21D5CAC219C2BEE500807913 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		21D5CAC519C3047000807913 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		21E4896119D13D5600C497ED /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		21EE1D1219C9AA27004603DC /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		5CD0EAAAECEE4714B7D96A29 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86995A342004B978DCF107B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				219DE90619B46EE000199D0D /* Supporting Files */,
 				210FB8E919C5DA02007BB7B0 /* caijing-Bridging-Header.h */,
 				2111FE9C19D0325700A246B4 /* LineView.swift */,
+				21E4896119D13D5600C497ED /* TitleView.swift */,
 			);
 			path = caijing;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				21D5CAC619C3047000807913 /* CommentCell.swift in Sources */,
 				2113632619BDBA1F00DDDA17 /* HomeViewController.swift in Sources */,
 				219DE90919B46EE000199D0D /* AppDelegate.swift in Sources */,
+				21E4896219D13D5600C497ED /* TitleView.swift in Sources */,
 				21EE1D1319C9AA27004603DC /* ContentViewController.swift in Sources */,
 				2111FE9D19D0325700A246B4 /* LineView.swift in Sources */,
 				2111FE8B19CDB04000A246B4 /* SWRevealViewController.m in Sources */,
