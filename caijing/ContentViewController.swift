@@ -55,13 +55,22 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func setTableViewHeader() {
-        var headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 40))
-        headerView.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
+        //var headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 40))
+        //headerView.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
+
+        let headerView = LineView(frame: CGRectMake(0, 0, tableView.frame.width, 40))
+        headerView.backgroundColor = ColorHelper.UIColorFromRGB(0xf0f0f0)
+        //tableView.tableHeaderView = bv
+        
         var label = UILabel(frame: CGRectMake(16, 16, 100, 25))
         label.text = "延展悦读"
-        label.font = UIFont(name:"HelveticaNeue-Light", size: 12)
+        label.font = UIFont(name:"HelveticaNeue-Light", size: 14)
         label.textColor = ColorHelper.UIColorFromRGB(0x999999)
         headerView.addSubview(label)
+        
+        //let bv = LineView(frame: CGRectMake(0, 0, tableView.frame.width, 40))
+        //bv.backgroundColor = ColorHelper.UIColorFromRGB(0xf0f0f0)
+        //tableView.tableHeaderView = bv
         tableView.tableHeaderView = headerView
     }
     
@@ -155,7 +164,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.textLabel?.text = rowData["title"].string
         cell.textLabel?.textColor = ColorHelper.UIColorFromRGB(0x4d4d4d)
         //cell.layer.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
-        cell.backgroundColor = ColorHelper.UIColorFromRGB(0xfafafa)
+        cell.backgroundColor = ColorHelper.UIColorFromRGB(0xf0f0f0)
         return cell
     }
     
@@ -166,7 +175,7 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    //UIActionSheetDelegate
+    //UIActionSheetDelegate for iOS7
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         println(buttonIndex)
         if let sources:[JSONValue] = self.newsDetail!["sources"]["sources"].array {

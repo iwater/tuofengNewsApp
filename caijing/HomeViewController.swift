@@ -14,6 +14,7 @@ class HomeViewController: UITableViewController {
     var tableData:[JSONValue] = []
     var page = 1
     var type = "home"
+    var titleStr = "首页"
     var loadMoreEnabled = false
     let defaultCellHeight:CGFloat = 130
     //var sideBar: SideMenu!
@@ -32,8 +33,10 @@ class HomeViewController: UITableViewController {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Bordered, target:nil, action:nil)
-        self.title = "驼峰财经·首页"
+        self.title = titleStr
         //self.navigationController?.hidesBarsOnTap = false
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
         self.tableView.layer.backgroundColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
@@ -49,6 +52,53 @@ class HomeViewController: UITableViewController {
         //self.tableView.contentOffset = CGPointMake(0, -self.refreshControl?.frame.size.height)
         
         self.tableView.estimatedRowHeight = defaultCellHeight
+        
+        println(navigationItem.titleView?.frame)
+        var tv = UIView(frame: CGRectMake(0, 0, 220, 25))
+        tv.backgroundColor = UIColor.clearColor()
+        
+        var label = UILabel(frame: CGRectMake(16, 16, 100, 25))
+        label.text = "· " + self.titleStr
+        label.font = UIFont(name:"Heiti-SC", size: 14)
+        label.textColor = UIColor.whiteColor()
+        
+        var iv = UIImageView(image: UIImage(named: "tf"))
+        var cr = UIView(frame: CGRectMake(0, 0, 40, 21))
+        cr.backgroundColor = UIColor.whiteColor()
+        cr.layer.borderColor = UIColor.whiteColor().CGColor
+        cr.layer.borderWidth = 2
+        cr.layer.cornerRadius = 2
+        iv.frame = CGRectMake(2, 2, 36, 17)
+        cr.addSubview(iv)
+        
+        tv.addSubview(cr)
+        tv.addSubview(label)
+        
+        //iv.setTranslatesAutoresizingMaskIntoConstraints(false)
+        cr.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        var viewsDict = Dictionary <String, UIView>()
+        viewsDict["logo"] = cr
+        viewsDict["title"] = label
+        
+        tv.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "V:|-[title]-|", options: nil, metrics: nil, views: viewsDict))
+        tv.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "V:[logo(21)]", options: nil, metrics: nil, views: viewsDict))
+        tv.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "H:[logo(40)]", options: nil, metrics: nil, views: viewsDict))
+        tv.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "V:|-2-[logo]", options: nil, metrics: nil, views: viewsDict))
+        tv.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "H:|-[logo]-[title]", options: nil, metrics: nil,
+                views: viewsDict))
+        navigationItem.titleView = tv
         
         self.refresh()
     }

@@ -46,17 +46,9 @@ class MenuTableViewController: UITableViewController, UITableViewDataSource, UIT
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("home") as HomeViewController
         vc.type = self.tableData[indexPath.row]["key"]!
+        vc.titleStr = self.tableData[indexPath.row]["title"]!
         let gc = UINavigationController(rootViewController: vc)
         let mc = self.revealViewController()
         mc.pushFrontViewController(gc, animated: true)
-        
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)  {
-        println("prepareForSegue")
-        var destination = segue.destinationViewController as HomeViewController
-        if let selectedRows = self.tableView.indexPathsForSelectedRows() {
-            destination.type = self.tableData[selectedRows[0].row]["key"]!
-        }
     }
 }
