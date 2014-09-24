@@ -15,6 +15,7 @@ class WebviewController: UIViewController, UIWebViewDelegate {
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
     
     var post: JSONValue!
+    var url: NSURL?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,6 +29,9 @@ class WebviewController: UIViewController, UIWebViewDelegate {
             if let realUrl:String = self.post["url"].string {
                 self.webView.loadRequest(NSURLRequest(URL: NSURL(string: realUrl)))
             }
+        }
+        if let url = self.url {
+            self.webView.loadRequest(NSURLRequest(URL: url))
         }
     }
     

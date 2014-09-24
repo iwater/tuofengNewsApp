@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xfg-cc-fyG">
     <dependencies>
-        <deployment version="1808" identifier="iOS"/>
+        <deployment version="1808" defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -128,13 +128,20 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-XN-7xZ">
+                                    <textView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-XN-7xZ">
                                         <rect key="frame" x="8" y="58" width="304" height="234"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">“除了开卖首日的行货，来自美国、日本、加拿大和澳大利亚的各国无锁版水货将会先后运到香港。目前每10个订单中至少有5单来自内地。”旺角先达广场资深手机店主刘志刚告诉记者，最缺货的128G金色iPhone 6 Plus首日回收价将在2万港元左右，每部iPhone 6转手的利润率最少也有100%。
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">“除了开卖首日的行货，来自美国、日本、加拿大和澳大利亚的各国无锁版水货将会先后运到香港。目前每10个订单中至少有5单来自内地。”旺角先达广场资深手机店主刘志刚告诉记者，最缺货的128G金色iPhone 6 Plus首日回收价将在2万港元左右，每部iPhone 6转手的利润率最少也有100%。
 如此稳赚不赔的买卖，精明的港人自然不会错过。继9月12日启动的网络订购导致港股成交量骤降三成后，16日开启的实体店预购同样供不应求。为了满足香港的“大胃口”，苹果决定从9月20日起每天早上8点开放实体店预购；内地果粉亦可登记身份证号参与抢购。</string>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <attributes>
+                                                    <font key="NSFont" size="18" name="STHeitiSC-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dS9-Xv-xAQ">
                                         <rect key="frame" x="28" y="300" width="264" height="34"/>

@@ -15,7 +15,7 @@ func lend<T where T:NSObject> (closure:(T)->()) -> T {
     return orig
 }
 
-class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate {
+class ContentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UITextViewDelegate {
     var tableData:[JSONValue] = []
     var news:JSONValue!
     var newsDetail:JSONValue?
@@ -52,6 +52,10 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         setTableViewHeader()
         
+        self.summary.delegate = self
+        
+        println(self.summary.delegate)
+
         newsHelper.getLArticle(self.update, id: news["id"].integer!)
     }
     
@@ -76,11 +80,11 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func displaySummary(summary: String){
-        let fontSize:CGFloat = 18.0
+        let fontSize:CGFloat = 24.0
         
         var content : NSMutableAttributedString!
         content = NSMutableAttributedString(string:summary, attributes: [
-            NSFontAttributeName: UIFont(name:"HelveticaNeue-Light", size: fontSize)
+            NSFontAttributeName: UIFont(name:"Heiti-SC", size: fontSize)
             ])
         
         let s1:NSString = summary
@@ -98,8 +102,18 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 para2.paragraphSpacing = 15.0
                 para2.paragraphSpacingBefore = 0.0
             }, range:NSMakeRange(0, s1.length))
+        let range = s1.rangeOfString("发改委")
+        println("range")
+        println(range)
+        
+        content.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.toRaw(), range: range)
+        content.addAttribute(NSForegroundColorAttributeName, value: ColorHelper.UIColorFromRGB(0x00bce2), range: range)
+        content.addAttribute(NSLinkAttributeName, value: "http://gupiao123.cn", range: range)
+        
+        self.summary.delegate = self
         
         self.summary.attributedText = content
+        self.summary.delegate = self
     }
     
     func update(json:JSONValue) {
@@ -185,5 +199,14 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
             self.navigationController?.pushViewController(webview, animated: true)
             //self.showDetailViewController(webview, sender: nil)
         }
+    }
+    
+    // UITextViewDelegate
+    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        println(URL)
+        var webview = self.storyboard?.instantiateViewControllerWithIdentifier("WebviewController") as WebviewController
+        webview.url = URL
+        self.navigationController?.pushViewController(webview, animated: true)
+        return false
     }
 }
