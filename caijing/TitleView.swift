@@ -16,7 +16,7 @@ class TitleView: UIView {
         
         var label = UILabel(frame: CGRectMake(16, 16, 100, 25))
         label.text = title
-        label.font = UIFont(name:"Heiti-SC", size: 14)
+        label.font = UIFont(name:"STHeitiSC-Medium", size: 18)
         label.textColor = UIColor.whiteColor()
         
         var iv = UIImageView(image: UIImage(named: "logo"))
