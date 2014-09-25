@@ -20,11 +20,10 @@ class MenuTableViewController: UITableViewController, UITableViewDataSource, UIT
         let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 44))
         headerView.backgroundColor = ColorHelper.UIColorFromRGB(0x00bce2)
         
-        var label = UILabel(frame: CGRectMake(10, 17, 300, 26))
-        label.text = "Menu"
-        label.font = UIFont(name:"HelveticaNeue-Light", size: 20)
-        label.textColor = ColorHelper.UIColorFromRGB(0xffffff)
-        headerView.addSubview(label)
+        var logo = UIImage(named: "tf")
+        var iv = UIImageView(frame: CGRectMake(15, 13, 71, 18))
+        iv.image = logo
+        headerView.addSubview(iv)
         
         tableView.tableHeaderView = headerView
     }
