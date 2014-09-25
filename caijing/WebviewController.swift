@@ -37,8 +37,12 @@ class WebviewController: UIViewController, UIWebViewDelegate {
         if 1 == self.navigationController?.viewControllers.count {
             self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
             self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
+            
             var leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: revealViewController(), action: "revealToggle:")
-            self.navigationItem.leftBarButtonItem = leftButton
+            var backButton = UIBarButtonItem(title: "后退", style: UIBarButtonItemStyle.Bordered, target: self, action: "goBack")
+            self.navigationItem.leftBarButtonItems = [leftButton, backButton]
+            
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         println(self)
     }
@@ -58,6 +62,10 @@ class WebviewController: UIViewController, UIWebViewDelegate {
     
     func onShareButton() {
         //Helper.showShareSheet(self.post, controller: self, barbutton: self.navigationItem.rightBarButtonItem)
+    }
+    
+    func goBack() {
+        webView.goBack()
     }
     
     func webViewDidStartLoad(webView: UIWebView!) {
