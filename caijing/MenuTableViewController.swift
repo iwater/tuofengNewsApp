@@ -16,6 +16,19 @@ class MenuTableViewController: UITableViewController, UITableViewDataSource, UIT
     
     var tableData : [[String:String]] = [["icon": "\u{E603}", "title": "财经导航", "key": "links"], ["icon": "\u{E600}", "title": "首页", "key": "home"], ["icon": "\u{E602}", "title": "媒体热门", "key": "by_portals"], ["icon": "\u{E601}", "title": "热评资讯", "key": "by_social"], ["icon": "\u{E604}", "title": "滚动新闻", "key": "latest"], ["icon": "\u{E604}", "title": "新股", "key": "ipo"], ["icon": "\u{E604}", "title": "港股", "key": "hk"], ["icon": "\u{E604}", "title": "基金", "key": "fund"], ["icon": "\u{E604}", "title": "期货", "key": "futures"], ["icon": "\u{E604}", "title": "外汇", "key": "forex"]]
     
+    override func viewDidLoad() {
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 44))
+        headerView.backgroundColor = ColorHelper.UIColorFromRGB(0x00bce2)
+        
+        var label = UILabel(frame: CGRectMake(10, 17, 300, 26))
+        label.text = "Menu"
+        label.font = UIFont(name:"HelveticaNeue-Light", size: 20)
+        label.textColor = ColorHelper.UIColorFromRGB(0xffffff)
+        headerView.addSubview(label)
+        
+        tableView.tableHeaderView = headerView
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -43,12 +56,21 @@ class MenuTableViewController: UITableViewController, UITableViewDataSource, UIT
         return 44
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("home") as HomeViewController
-        vc.type = self.tableData[indexPath.row]["key"]!
-        vc.titleStr = self.tableData[indexPath.row]["title"]!
-        let gc = UINavigationController(rootViewController: vc)
-        let mc = self.revealViewController()
-        mc.pushFrontViewController(gc, animated: true)
+    override func tableView(tableiew: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row > 0 {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("home") as HomeViewController
+            vc.type = self.tableData[indexPath.row]["key"]!
+            vc.titleStr = self.tableData[indexPath.row]["title"]!
+            let gc = UINavigationController(rootViewController: vc)
+            let mc = self.revealViewController()
+            mc.pushFrontViewController(gc, animated: true)
+            
+        } else {
+            var vc = self.storyboard?.instantiateViewControllerWithIdentifier("WebviewController") as WebviewController
+            vc.url = NSURL(string: "http://caijing.tuofeng.cn/nav2.html")
+            let gc = UINavigationController(rootViewController: vc)
+            let mc = self.revealViewController()
+            mc.pushFrontViewController(gc, animated: true)
+        }
     }
 }

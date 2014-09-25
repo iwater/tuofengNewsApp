@@ -20,6 +20,18 @@ class TopicViewController: UITableViewController {
         navigationItem.titleView = TitleView(frame: CGRectMake(0, 0, 220, 25), title: "专题")
         tableView.layer.backgroundColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
         newsHelper.getTopic(self.update, keyword: topic, page: page++)
+        
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 60))
+        headerView.backgroundColor = ColorHelper.UIColorFromRGB(0xf16262)
+        
+        var label = UILabel(frame: CGRectMake(10, 17, 300, 26))
+        label.text = "关于" + topic + "的专栏"
+        label.font = UIFont(name:"HelveticaNeue-Light", size: 20)
+        label.textColor = ColorHelper.UIColorFromRGB(0xffffff)
+        headerView.addSubview(label)
+        
+        tableView.tableHeaderView = headerView
+
     }
     
     func update(data:[JSONValue]) {

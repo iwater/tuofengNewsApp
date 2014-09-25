@@ -33,6 +33,14 @@ class WebviewController: UIViewController, UIWebViewDelegate {
         if let url = self.url {
             self.webView.loadRequest(NSURLRequest(URL: url))
         }
+        
+        if 1 == self.navigationController?.viewControllers.count {
+            self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+            self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
+            var leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: revealViewController(), action: "revealToggle:")
+            self.navigationItem.leftBarButtonItem = leftButton
+        }
+        println(self)
     }
     
     func setupLoadingButton() {
