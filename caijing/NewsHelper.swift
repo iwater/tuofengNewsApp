@@ -13,6 +13,7 @@ class NewsHelper {
     let URL_Type = "http://caijing.tuofeng.cn/app/news/by_portals/"
     let URL_Article = "http://caijing.tuofeng.cn/app/article/"
     let URL = "http://caijing.tuofeng.cn/app/"
+    let URL_Tag = "http://caijing.tuofeng.cn/app/tag/"
     
     lazy var defaultHeaders: [String: String] = {
         let accept: String = "application/json"
@@ -42,6 +43,8 @@ class NewsHelper {
         let url = URL_Article + "\(id)/"
         Alamofire.request(.GET, url, parameters: ["type": "json"])
             .responseJSON {(request, response, JSON, error) in
+                println(error)
+                println(JSON)
                 if let data: AnyObject = JSON? {
                     callback(JSONValue(data))
                 }
@@ -54,9 +57,20 @@ class NewsHelper {
             .responseJSON {(request, response, JSON, error) in
                 if let data: AnyObject = JSON? {
                     let json:[JSONValue] = JSONValue(data)["comments"].array ?? []
-                    //println(json.count)
                     callback(json)
                 }
         }
     }
+    
+    func getTopic(callback:(([JSONValue])->Void), keyword:String, page:Int = 1) {
+        let url = URL_Tag
+        Alamofire.request(.GET, url, parameters: ["page": page, "type": "json", "keyword": keyword])
+            .responseJSON {(request, response, JSON, error) in
+                println(JSON)
+                if let data: AnyObject = JSON? {
+                    callback(JSONValue(data)["articleList"]["articles"].array!)
+                }
+        }
+    }
+
 }

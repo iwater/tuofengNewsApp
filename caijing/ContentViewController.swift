@@ -103,19 +103,35 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
                 para2.paragraphSpacingBefore = 0.0
             }, range:NSMakeRange(0, s1.length))
         
-        if let links:[JSONValue] = self.newsDetail!["newsDetail"]["article"]["links"].array {
-            for link:JSONValue in links {
-                let range = s1.rangeOfString(link["tag"].string!)
-                println("range")
-                println(range)
-                
-                //content.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.toRaw(), range: range)
-                content.addAttribute(NSForegroundColorAttributeName, value: ColorHelper.UIColorFromRGB(0x00bce2), range: range)
-                content.addAttribute(NSLinkAttributeName, value: link["link"].string!, range: range)
+        if let news:JSONValue = self.newsDetail {
+            if let links:[JSONValue] = self.newsDetail!["newsDetail"]["article"]["links"].array {
+                for link:JSONValue in links {
+                    let range = s1.rangeOfString(link["tag"].string!)
+                    println("range")
+                    println(range)
+                    
+                    //content.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.toRaw(), range: range)
+                    //content.addAttribute(NSLinkAttributeName, value: link["link"].string!, range: range)
+                    content.addAttributes([NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleDouble.toRaw(), NSLinkAttributeName: link["link"].string!], range: range)
+                }
+            }
+            
+            if let keywords:[JSONValue] = self.newsDetail!["keywords"]["keywords"].array {
+                for keyword:JSONValue in keywords {
+                    let range = s1.rangeOfString(keyword.string!)
+                    let url:String = "tuofeng://127.0.0.1/"
+                    println("range")
+                    println(range)
+                    
+                    //content.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.toRaw(), range: range)
+                    content.addAttribute(NSForegroundColorAttributeName, value: ColorHelper.UIColorFromRGB(0xfaae4c), range: range)
+                    content.addAttribute(NSLinkAttributeName, value: url, range: range)
+                }
             }
         }
-        
+        self.summary.linkTextAttributes = [NSForegroundColorAttributeName: ColorHelper.UIColorFromRGB(0x00bce2)]
         self.summary.attributedText = content
+        println(self.summary.textContainerInset)
     }
     
     func update(json:JSONValue) {
@@ -206,9 +222,21 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     // UITextViewDelegate
     func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
         println(URL)
-        var webview = self.storyboard?.instantiateViewControllerWithIdentifier("WebviewController") as WebviewController
-        webview.url = URL
-        self.navigationController?.pushViewController(webview, animated: true)
+        if URL.scheme == "tuofeng" {
+            let text = textView.text as NSString
+            let clickedText = text.substringWithRange(characterRange)
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("TopicViewController") as TopicViewController
+            vc.topic = clickedText
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            println(text.substringWithRange(characterRange))
+            println(characterRange)
+            
+        } else if URL.scheme == "http" {
+            var webview = self.storyboard?.instantiateViewControllerWithIdentifier("WebviewController") as WebviewController
+            webview.url = URL
+            self.navigationController?.pushViewController(webview, animated: true)
+        }
         return false
     }
 }
