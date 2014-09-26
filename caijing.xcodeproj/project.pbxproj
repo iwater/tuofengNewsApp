@@ -22,7 +22,6 @@
 		2113DB1319B5D48B001F1065 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2113DB1219B5D48B001F1065 /* NewsCell.swift */; };
 		211FB09019C3F965003732B5 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 211FB08F19C3F965003732B5 /* loading.png */; };
 		211FB09419C49773003732B5 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211FB09319C49773003732B5 /* MenuTableViewController.swift */; };
-		211FB09F19C586C9003732B5 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 211FB09E19C586C9003732B5 /* icomoon.ttf */; };
 		219DE90919B46EE000199D0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219DE90819B46EE000199D0D /* AppDelegate.swift */; };
 		219DE91019B46EE000199D0D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 219DE90F19B46EE000199D0D /* Images.xcassets */; };
 		219DE91C19B46EE100199D0D /* caijingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219DE91B19B46EE100199D0D /* caijingTests.swift */; };
@@ -131,7 +130,6 @@
 		2113DB1219B5D48B001F1065 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsCell.swift; path = ../NewsCell.swift; sourceTree = "<group>"; };
 		211FB08F19C3F965003732B5 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		211FB09319C49773003732B5 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
-		211FB09E19C586C9003732B5 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
 		219DE90319B46EE000199D0D /* caijing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = caijing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		219DE90719B46EE000199D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		219DE90819B46EE000199D0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +138,7 @@
 		219DE91A19B46EE100199D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		219DE91B19B46EE100199D0D /* caijingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caijingTests.swift; sourceTree = "<group>"; };
 		21A592D519D45016009FDDFC /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		21A592E319D5A7E0009FDDFC /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
 		21D5CAC219C2BEE500807913 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		21D5CAC519C3047000807913 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		21E4896119D13D5600C497ED /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
@@ -273,8 +272,8 @@
 		219DE90619B46EE000199D0D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				21A592E319D5A7E0009FDDFC /* icomoon.ttf */,
 				211FB08F19C3F965003732B5 /* loading.png */,
-				211FB09E19C586C9003732B5 /* icomoon.ttf */,
 				219DE90719B46EE000199D0D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -446,7 +445,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				211FB09F19C586C9003732B5 /* icomoon.ttf in Resources */,
 				2111FE9219CDDDF200A246B4 /* Main.storyboard in Resources */,
 				211FB09019C3F965003732B5 /* loading.png in Resources */,
 				219DE91019B46EE000199D0D /* Images.xcassets in Resources */,

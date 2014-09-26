@@ -234,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gyC-UY-pVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1908" y="283"/>
+            <point key="canvasLocation" x="2972" y="283"/>
         </scene>
         <!--Webview Controller-->
         <scene sceneID="Qbd-Nv-SWz">
@@ -357,8 +357,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="8be-xJ-kor" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="Td4-4C-mxY"/>
                         <segue destination="L04-TJ-LFn" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="WF5-es-5GF"/>
+                        <segue destination="mLa-Dp-mc6" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="Tgq-sl-9ha"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gwx-kW-xBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -404,10 +404,12 @@
                             <outlet property="delegate" destination="8be-xJ-kor" id="EHy-EF-hEo"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="fYb-cQ-HKo"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNQ-rf-e09" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901" y="-55"/>
+            <point key="canvasLocation" x="1433" y="-55"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OOd-rU-uzV">
@@ -527,6 +529,24 @@
                 </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2419" y="661"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="s7P-9o-8yQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mLa-Dp-mc6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mNJ-Bk-bgt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8be-xJ-kor" kind="relationship" relationship="rootViewController" id="tr1-hN-Iew"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f7J-5R-Vd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="901" y="-55"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
