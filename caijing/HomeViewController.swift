@@ -177,8 +177,9 @@ class HomeViewController: UITableViewController {
     func setupNavigationItems() {
         var rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "doRefresh")
         self.navigationItem.rightBarButtonItem = rightButton
-        var leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: revealViewController(), action: "revealToggle:")
-        self.navigationItem.leftBarButtonItem = leftButton
+        var menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Bordered, target: revealViewController(), action: "revealToggle:")
+        //var leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: revealViewController(), action: "revealToggle:")
+        self.navigationItem.leftBarButtonItem = menuButton
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)  {

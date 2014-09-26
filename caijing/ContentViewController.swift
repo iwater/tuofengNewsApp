@@ -32,6 +32,10 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Bordered, target:nil, action:nil)
         navigationItem.titleView = TitleView(frame: CGRectMake(0, 0, 220, 25), title: "正文")
+        
+        var commentButton = UIBarButtonItem(title: "xxx", style: .Bordered, target: nil, action: nil)
+        var app = UIBarButtonItem.appearance()
+        //app.titleTextAttributesForState(<#state: UIControlState#>)
 
         
         titleLabel.text = news["title"].string
@@ -57,6 +61,29 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         println(self.summary.delegate)
 
         newsHelper.getLArticle(self.update, id: news["id"].integer!)
+        //setupNavigationItems()
+    }
+    
+    func setupCommentsButton(count: String) {
+        //var view = UIView(frame: CGRectMake(0, 0, 50, 50))
+        var button = UIButton(frame: CGRectMake(0, 0, 70, 50))
+        button.setTitle("\u{E605} " + count, forState: UIControlState.Normal)
+        button.titleLabel?.font = UIFont(name: "icomoon", size: 18)
+        button.addTarget(self, action: "showComments", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        /*var label = UILabel(frame: CGRectMake(0, 0, 70, 50))
+        label.font = UIFont(name: "icomoon", size: 18)
+        label.textColor = ColorHelper.UIColorFromRGB(0xffffff)
+        label.text = "\u{E605} 100+"*/
+        
+        var btn = UIBarButtonItem(customView: button)
+        self.navigationItem.rightBarButtonItem = btn
+    }
+    
+    func showComments() {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("CommentsViewController") as CommentsViewController
+        vc.news = news
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func setTableViewHeader() {
@@ -148,6 +175,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tableView.needsUpdateConstraints()
         if self.tableData.count == 0 {
           self.tableView.hidden = true
+        }
+        if let commentCnt:Int = newsDetail!["commentBox"]["commentCnt"].integer {
+            self.setupCommentsButton(String(commentCnt))
         }
     }
     

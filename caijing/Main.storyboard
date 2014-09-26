@@ -273,7 +273,7 @@
         <!--Comments View Controller-->
         <scene sceneID="nm9-vc-eJB">
             <objects>
-                <tableViewController id="Cwa-cF-zqh" customClass="CommentsViewController" customModule="caijing" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CommentsViewController" id="Cwa-cF-zqh" customClass="CommentsViewController" customModule="caijing" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="22" sectionFooterHeight="22" id="cOq-Yj-uhv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
