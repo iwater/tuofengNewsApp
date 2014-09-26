@@ -177,7 +177,9 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
           self.tableView.hidden = true
         }
         if let commentCnt:Int = newsDetail!["commentBox"]["commentCnt"].integer {
-            self.setupCommentsButton(String(commentCnt))
+            if commentCnt > 0 {
+                self.setupCommentsButton(String(commentCnt))
+            }
         }
     }
     
