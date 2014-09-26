@@ -133,9 +133,7 @@
                                         <rect key="frame" x="8" y="58" width="304" height="234"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <attributedString key="attributedText">
-                                            <fragment>
-                                                <string key="content">“除了开卖首日的行货，来自美国、日本、加拿大和澳大利亚的各国无锁版水货将会先后运到香港。目前每10个订单中至少有5单来自内地。”旺角先达广场资深手机店主刘志刚告诉记者，最缺货的128G金色iPhone 6 Plus首日回收价将在2万港元左右，每部iPhone 6转手的利润率最少也有100%。
-如此稳赚不赔的买卖，精明的港人自然不会错过。继9月12日启动的网络订购导致港股成交量骤降三成后，16日开启的实体店预购同样供不应求。为了满足香港的“大胃口”，苹果决定从9月20日起每天早上8点开放实体店预购；内地果粉亦可登记身份证号参与抢购。</string>
+                                            <fragment content="正在加载中...">
                                                 <attributes>
                                                     <font key="NSFont" size="18" name="STHeitiSC-Light"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -476,6 +474,9 @@
                                             <state key="normal" title="10000000">
                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="Cwa-cF-zqh" kind="push" identifier="openNewsComments" id="hAd-En-Tz4"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="3" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ltk-ZQ-6Z8">
                                             <rect key="frame" x="16" y="40" width="288" height="49"/>
@@ -506,6 +507,7 @@
                                     <outlet property="summary" destination="Ltk-ZQ-6Z8" id="NAo-mt-3q3"/>
                                     <outlet property="time" destination="vha-5T-DGw" id="qbx-Zr-xkW"/>
                                     <outlet property="title" destination="jEn-AT-lUw" id="4AR-n1-kmj"/>
+                                    <segue destination="0yb-nh-PNc" kind="push" identifier="openNews" id="UTV-YC-Bjt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -524,7 +526,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="906" y="1473"/>
+            <point key="canvasLocation" x="2419" y="661"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -533,6 +535,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gxp-oo-vxB"/>
+        <segue reference="hAd-En-Tz4"/>
+        <segue reference="UTV-YC-Bjt"/>
     </inferredMetricsTieBreakers>
 </document>

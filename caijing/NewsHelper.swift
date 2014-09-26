@@ -68,7 +68,9 @@ class NewsHelper {
             .responseJSON {(request, response, JSON, error) in
                 println(JSON)
                 if let data: AnyObject = JSON? {
-                    callback(JSONValue(data)["articleList"]["articles"].array!)
+                    if let articles: [JSONValue] = JSONValue(data)["articleList"]["articles"].array {
+                        callback(articles)
+                    }
                 }
         }
     }

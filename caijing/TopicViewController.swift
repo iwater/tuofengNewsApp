@@ -18,6 +18,8 @@ class TopicViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = TitleView(frame: CGRectMake(0, 0, 220, 25), title: "专题")
+        navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Bordered, target:nil, action:nil)
+
         tableView.layer.backgroundColor = ColorHelper.UIColorFromRGB(0xf2f2f0).CGColor
         newsHelper.getTopic(self.update, keyword: topic, page: page++)
         
@@ -89,6 +91,20 @@ class TopicViewController: UITableViewController {
         cell.backgroundView = background
         
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)  {
+        if(segue.identifier == "openNewsComments") {
+            var destination = segue.destinationViewController as CommentsViewController
+            let position = sender.convertPoint(CGPointZero, toView: self.tableView)
+            let path = self.tableView.indexPathForRowAtPoint(position)
+            destination.news = self.tableData[path!.row]
+        } else if (segue.identifier == "openNews") {
+            var destination = segue.destinationViewController as ContentViewController
+            if let selectedRows = self.tableView.indexPathsForSelectedRows() {
+                destination.news = self.tableData[selectedRows[0].row]
+            }
+        }
     }
 
 }

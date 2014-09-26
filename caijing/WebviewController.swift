@@ -38,13 +38,11 @@ class WebviewController: UIViewController, UIWebViewDelegate {
             self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
             self.navigationController?.navigationBar.barTintColor = ColorHelper.UIColorFromRGB(0x00bce2)
             
-            var leftButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: revealViewController(), action: "revealToggle:")
-            var backButton = UIBarButtonItem(title: "后退", style: UIBarButtonItemStyle.Bordered, target: self, action: "goBack")
-            self.navigationItem.leftBarButtonItems = [leftButton, backButton]
+            var backArrow = UIBarButtonItem(image: UIImage(named: "arrow"), style: UIBarButtonItemStyle.Bordered, target: self, action: "goBack")
+            self.navigationItem.leftBarButtonItem = backArrow
             
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        println(self)
     }
     
     func setupLoadingButton() {
@@ -65,7 +63,11 @@ class WebviewController: UIViewController, UIWebViewDelegate {
     }
     
     func goBack() {
-        webView.goBack()
+        if webView.canGoBack {
+            webView.goBack()
+        } else {
+            self.revealViewController().revealToggleAnimated(true)
+        }
     }
     
     func webViewDidStartLoad(webView: UIWebView!) {
