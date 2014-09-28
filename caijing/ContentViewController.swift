@@ -243,11 +243,13 @@ class ContentViewController: UIViewController, UITableViewDataSource, UITableVie
     //UIActionSheetDelegate for iOS7
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         println(buttonIndex)
-        if let sources:[JSONValue] = self.newsDetail!["sources"]["sources"].array {
-            var webview = self.storyboard?.instantiateViewControllerWithIdentifier("WebviewController") as WebviewController
-            webview.post = sources[buttonIndex]
-            self.navigationController?.pushViewController(webview, animated: true)
-            //self.showDetailViewController(webview, sender: nil)
+        if buttonIndex > 0 {
+            if let sources:[JSONValue] = self.newsDetail!["sources"]["sources"].array {
+                var webview = self.storyboard?.instantiateViewControllerWithIdentifier("WebviewController") as WebviewController
+                webview.post = sources[buttonIndex-1]
+                self.navigationController?.pushViewController(webview, animated: true)
+                //self.showDetailViewController(webview, sender: nil)
+            }
         }
     }
     
